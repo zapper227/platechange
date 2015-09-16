@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+	<html>
+		<head>
+			<title> Template Changer </title>
+		</head>
+
+		<body>
+			<div id ="title"> <H1>Template Changer</H1> </div>
+			<div id = "textbox">
+				<!-- A box for the instructions to sit in -->
+				<div id="instructions">
+				
+				<p> <span id="bigger">Instructions:</span> Paste your template in the textarea.. For each replacement required change a box on the right hand side starting with "1." for the @@@@1. When you are done making these edits press update. This will replace all @@@@# with the respective edits and will launch a prompt window with the edited field selected. Press Ctrl + C and then press enter. ET Voila! </p>
+				</div>
+					<!--The area to past to, edit and get copied -->
+					<div contentEditable=true id="copythis" class="textlook">
+Subject: Urgent - Action Required - NetSuite Access Reduction Imminent
+Hello,
+The login audit trail in NetSuite indicates that you have not logged into your NetSuite account using your main role(s) for at least 90 days (@@@@1). As a security precaution, the following main role(s) will be removed from your account in seven days time unless you log into NetSuite and use them:
+
+@@@@2
+
+
+If you're confident you no longer need the role(s), please let us know sooner as this helps the organization to manage and budget for software licensing costs.
+You will still have access to your NetSuite account using your PCC Employee Center role.
+If you need your role added back in the future, ask your supervisor to create an Employee Support Case in the Employee Community.
+					</div>
+					
+					<!--The edit boxes (for now hardcoded to ten-->
+					<div id="inputbox">
+					<H3>Edit fields: </H3>
+					<textarea rows="2" cols="20" class = "coolset" id="box1">1.</textarea>
+					<textarea rows="2" cols="20" class = "coolset" id="box2">2.</textarea>
+					<textarea rows="2" cols="20" class = "coolset" id="box3">3.</textarea>
+					<textarea rows="2" cols="20" class = "coolset" id="box4">4.</textarea>
+					<textarea rows="2" cols="20" class = "coolset" id="box5">5.</textarea>
+					<textarea rows="2" cols="20" class = "coolset" id="box6">6.</textarea>
+					<textarea rows="2" cols="20" class = "coolset" id="box7">7.</textarea>
+					<textarea rows="2" cols="20" class = "coolset" id="box8">8.</textarea>
+					<textarea rows="2" cols="20" class = "coolset" id="box9">9.</textarea>
+					<textarea rows="2" cols="20" class = "coolset" id="box10">10.</textarea>
+					</div>
+
+			</div>
+			
+
+			<!--Bottom Div to hold the buttons-->
+			<div id="bottom">
+				<!--The two buttons and their onclick functions being called-->
+				<button id="button1" onclick = "change(document.getElementById('copythis').innerHTML)" > Update </button>
+				
+
+				<script> 
+				//Function to read in the textarea and boxes, as well as update the textarea based on the boxes.
+				function change(readText) {
+					//Reading the boxes
+					var str = readText;
+					var text1 = document.getElementById('box1').value;
+					var text2 = document.getElementById('box2').value;
+					var text3 = document.getElementById('box3').value;
+					var text4 = document.getElementById('box4').value;
+					var text5 = document.getElementById('box5').value;
+					var text6 = document.getElementById('box6').value;
+					var text7 = document.getElementById('box7').value;
+					var text8 = document.getElementById('box8').value;
+					var text9 = document.getElementById('box9').value;
+					var text10 = document.getElementById('box10').value;
+				
+					//Making the edits 
+					 str = str.replace(/@@@@1/g , text1);
+					 str = str.replace(/@@@@2/g , text2);
+					 str = str.replace(/@@@@3/g , text3);
+					 str = str.replace(/@@@@4/g , text4);
+					 str = str.replace(/@@@@5/g , text5);
+					 str = str.replace(/@@@@6/g , text6);
+					 str = str.replace(/@@@@7/g , text7);
+					 str = str.replace(/@@@@8/g , text8);
+					 str = str.replace(/@@@@9/g , text9);
+					 str = str.replace(/@@@@10/g , text10);
+					 
+					 //Putting it back
+					document.getElementById('copythis').innerHTML = str;
+					//Window prompt to tell user to copy, *also has text pre-highlighted since it was passed in as "text"
+					window.prompt("Copy to clipboard: Ctrl+C, Enter", str);
+				}
+				</script>
+
+			</div>
+		</body>
+			
+	<!--Embedded CSS to work on a static page -->
+<style media="screen" type ="text/css">
+
+	
+		body{background-color: #D3D3D3;}
+
+		p{
+			display: inline-block;
+			vertical-align: center;
+			font-size: 20px;
+		}
+		#bigger{
+			font-size: 22px;
+			font-weight: bold;
+		}
+		/* Situates the title at the top of the page */
+		#title{
+			position: fixed;
+			top: 0;
+			width: 100%;
+			left: 0;
+			height: 90px;
+			text-align: center;
+		}
+		/* Situates the buttons at the bottom of the page */
+		#bottom{
+			position: fixed;
+			bottom: 0;
+			width: 50%;
+			margin-left: 25%;
+			left: 0;
+			height: 150px;
+		}
+		/*Box that holds the instructions*/
+		#instructions{
+			width: 800px;
+			height: auto;
+			background-color: #D3D3D3;
+			position: relative;
+		}
+		#textbox{
+			height: auto;
+			width: auto;
+			margin-left: auto;
+			margin-right: auto;
+			padding-left: 50px;
+			padding-right: 50px;
+			background-color: #D3D3D3;
+			margin-top: 100px;
+		}
+		#inputbox{
+			height: auto;
+			width: auto;
+			float: right;
+			background-color: #D3D3D3;
+			margin-right: auto;
+		}
+		/*Class to define the edit boxes*/
+		.coolset{
+			right: 0;
+			display: block;
+			resize:none;
+			position: relative;
+			margin-left: auto;
+
+		}
+		/*Style the buttons */
+		#button1{
+			height: 30px;
+			width: 60px;
+			border-radius: 10px;
+			background-color: #7A52CC;
+			margin-left: auto;
+			position: relative;
+			margin-right: auto;
+			font-weight: bold;
+		}
+
+		.textlook{
+
+		border: 1px solid gray;
+		background-color: white;
+		height: 300px;
+		width:  600px;
+		overflow: auto;
+		resize: both;
+		padding: 2px;
+
+
+
+		}
+
+</style>
